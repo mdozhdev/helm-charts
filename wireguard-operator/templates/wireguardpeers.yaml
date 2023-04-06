@@ -3,7 +3,7 @@
 apiVersion: vpn.example.com/v1alpha1
 kind: WireguardPeer
 metadata:
-  name: $v
+  name: {{ $v }}
   labels:
     {{- include "wireguard-operator.labels" $ | nindent 4 }}
 spec:
