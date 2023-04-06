@@ -9,6 +9,6 @@ entries:
     name: wireguard-operator
     type: application
     urls:
-    - https://github.com/mdozhdev/helm-charts/wireguard-operator-0.1.0.tgz
+    - https://mdozhdev.github.io/helm-charts/wireguard-operator-0.1.0.tgz
     version: 0.1.0
 generated: "2023-04-06T21:17:00.904100015+03:00"
