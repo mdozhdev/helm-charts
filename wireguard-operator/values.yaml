@@ -21,7 +21,7 @@ manager:
   image:
     repository: ghcr.io/jodevsa/wireguard-operator/operator
     pullPolicy: IfNotPresent
-    tag: sha-4189165fa267c75fcce4f1559144486423271a81
+    tag: sha-7b4133ef765b314d67b62455be3eea076deafa3d
   securityContext:
     allowPrivilegeEscalation: false
   resources:
@@ -34,8 +34,8 @@ manager:
 
 wireguard:
   image:
-    repository: ghcr.io/jodevsa/wireguard-operator/operator
-    tag: sha-4189165fa267c75fcce4f1559144486423271a81
+    repository: ghcr.io/jodevsa/wireguard-operator/wireguard
+    tag: sha-7b4133ef765b314d67b62455be3eea076deafa3d
 
 imagePullSecrets: []
 nameOverride: ""
