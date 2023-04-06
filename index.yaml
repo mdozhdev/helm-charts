@@ -3,12 +3,12 @@ entries:
   wireguard-operator:
   - apiVersion: v2
     appVersion: 1.0.1
-    created: "2023-04-06T22:21:10.850303457+03:00"
+    created: "2023-04-06T22:32:34.16915928+03:00"
     description: A Helm chart for Wireguard VPN Operator
-    digest: b745f651627c9c0c9eb595ee306fc476b68d7de1f4a3fc067329a1d86662f87b
+    digest: 4c1b66a2d50d8bf87f76c078f0270dff0f1484debf334dd66b55bf7da2162689
     name: wireguard-operator
     type: application
     urls:
     - https://mdozhdev.github.io/helm-charts/wireguard-operator-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-06T22:21:10.845895141+03:00"
+generated: "2023-04-06T22:32:34.164788232+03:00"
