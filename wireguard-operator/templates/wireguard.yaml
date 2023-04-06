@@ -1,0 +1,10 @@
+{{- if .Values.wireguardVPN.create -}}
+apiVersion: vpn.example.com/v1alpha1
+kind: Wireguard
+metadata:
+  name: {{ include "wireguard-operator.fullname" . }}
+  labels:
+    {{- include "wireguard-operator.labels" $ | nindent 4 }}
+spec:
+  {{- toYaml .Values.wireguard.spec | nindent 2 }}
+{{ end }}

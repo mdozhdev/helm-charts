@@ -6,7 +6,7 @@ replicaCount: 1
 
 kubeRbacProxy:
   image:
-    repository: nginxgcr.io/kubebuilder/kube-rbac-proxy
+    repository: gcr.io/kubebuilder/kube-rbac-proxy
     pullPolicy: IfNotPresent
     tag: v0.8.0
   resources:
@@ -65,7 +65,7 @@ affinity: {}
 
 configMap:
   annotations: {}
-  data: |-
+  data:
     controller_manager_config.yaml: |
       apiVersion: controller-runtime.sigs.k8s.io/v1alpha1
       kind: ControllerManagerConfig
@@ -81,6 +81,155 @@ configMap:
 
 clusterRoles:
   - name: manager
+    annotations: {}
+    rules:
+    - apiGroups:
+      - ""
+      resources:
+      - configmaps
+      verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+    - apiGroups:
+      - ""
+      resources:
+      - nodes
+      verbs:
+      - list
+      - watch
+    - apiGroups:
+      - ""
+      resources:
+      - pods
+      verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+    - apiGroups:
+      - ""
+      resources:
+      - secrets
+      verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+    - apiGroups:
+      - ""
+      resources:
+      - services
+      verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+    - apiGroups:
+      - apps
+      resources:
+      - deployments
+      verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+    - apiGroups:
+      - apps
+      resources:
+      - pods
+      verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+    - apiGroups:
+      - vpn.example.com
+      resources:
+      - wireguardpeers
+      verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+    - apiGroups:
+      - vpn.example.com
+      resources:
+      - wireguardpeers/finalizers
+      verbs:
+      - update
+    - apiGroups:
+      - vpn.example.com
+      resources:
+      - wireguardpeers/status
+      verbs:
+      - get
+      - patch
+      - update
+    - apiGroups:
+      - vpn.example.com
+      resources:
+      - wireguards
+      verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+    - apiGroups:
+      - vpn.example.com
+      resources:
+      - wireguards/finalizers
+      verbs:
+      - update
+    - apiGroups:
+      - vpn.example.com
+      resources:
+      - wireguards/status
+      verbs:
+      - get
+      - patch
+      - update
+  - name: proxy
+    annotations: {}
+    rules:
+      - apiGroups:
+          - authentication.k8s.io
+        resources:
+          - tokenreviews
+        verbs:
+          - create
+      - apiGroups:
+          - authorization.k8s.io
+        resources:
+          - subjectaccessreviews
+        verbs:
+          - create
+  - name: metrics-reader
     annotations: {}
     rules:
       - apiGroups:
@@ -207,155 +356,13 @@ clusterRoles:
         verbs:
           - update
       - apiGroups:
-  - name: proxy
-    annotations: {}
-    rules:
-      - apiGroups:
-          - authentication.k8s.io
+          - vpn.example.com
         resources:
-          - tokenreviews
+          - wireguards/status
         verbs:
-          - create
-      - apiGroups:
-          - authorization.k8s.io
-        resources:
-          - subjectaccessreviews
-        verbs:
-          - create
-  # - name: metrics-reader
-  #   annotations: {}
-  #   rules:
-  #     - apiGroups:
-  #         - ""
-  #       resources:
-  #         - configmaps
-  #       verbs:
-  #         - create
-  #         - delete
-  #         - get
-  #         - list
-  #         - patch
-  #         - update
-  #         - watch
-  #     - apiGroups:
-  #         - ""
-  #       resources:
-  #         - nodes
-  #       verbs:
-  #         - list
-  #         - watch
-  #     - apiGroups:
-  #         - ""
-  #       resources:
-  #         - pods
-  #       verbs:
-  #         - create
-  #         - delete
-  #         - get
-  #         - list
-  #         - patch
-  #         - update
-  #         - watch
-  #     - apiGroups:
-  #         - ""
-  #       resources:
-  #         - secrets
-  #       verbs:
-  #         - create
-  #         - delete
-  #         - get
-  #         - list
-  #         - patch
-  #         - update
-  #         - watch
-  #     - apiGroups:
-  #         - ""
-  #       resources:
-  #         - services
-  #       verbs:
-  #         - create
-  #         - delete
-  #         - get
-  #         - list
-  #         - patch
-  #         - update
-  #         - watch
-  #     - apiGroups:
-  #         - apps
-  #       resources:
-  #         - deployments
-  #       verbs:
-  #         - create
-  #         - delete
-  #         - get
-  #         - list
-  #         - patch
-  #         - update
-  #         - watch
-  #     - apiGroups:
-  #         - apps
-  #       resources:
-  #         - pods
-  #       verbs:
-  #         - create
-  #         - delete
-  #         - get
-  #         - list
-  #         - patch
-  #         - update
-  #         - watch
-  #     - apiGroups:
-  #         - vpn.example.com
-  #       resources:
-  #         - wireguardpeers
-  #       verbs:
-  #         - create
-  #         - delete
-  #         - get
-  #         - list
-  #         - patch
-  #         - update
-  #         - watch
-  #     - apiGroups:
-  #         - vpn.example.com
-  #       resources:
-  #         - wireguardpeers/finalizers
-  #       verbs:
-  #         - update
-  #     - apiGroups:
-  #         - vpn.example.com
-  #       resources:
-  #         - wireguardpeers/status
-  #       verbs:
-  #         - get
-  #         - patch
-  #         - update
-  #     - apiGroups:
-  #         - vpn.example.com
-  #       resources:
-  #         - wireguards
-  #       verbs:
-  #         - create
-  #         - delete
-  #         - get
-  #         - list
-  #         - patch
-  #         - update
-  #         - watch
-  #     - apiGroups:
-  #         - vpn.example.com
-  #       resources:
-  #         - wireguards/finalizers
-  #       verbs:
-  #         - update
-  #     - apiGroups:
-  #         - vpn.example.com
-  #       resources:
-  #         - wireguards/status
-  #       verbs:
-  #         - get
-  #         - patch
-  #         - update
+          - get
+          - patch
+          - update
 
 roles:
   - name: leader-election-role
@@ -392,3 +399,9 @@ roles:
         verbs:
           - create
           - patch
+
+wireguardVPN:
+  create: false
+  spec: {}
+
+wireguardPeers: []
