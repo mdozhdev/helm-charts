@@ -1,0 +1,19 @@
+{{- range $v := .Values.clusterRoles }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "wireguard-operator.fullname" $ }}-{{ $v.name}}
+  labels:
+    {{- include "wireguard-operator.labels" $ | nindent 4 }}
+  {{- with $v.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "wireguard-operator.fullname" $ }}-{{ $v.name}}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "wireguard-operator.serviceAccountName" $ }}
+{{- end }}
