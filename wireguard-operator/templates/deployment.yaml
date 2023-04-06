@@ -48,7 +48,7 @@ spec:
             - --health-probe-bind-address=:8081
             - --metrics-bind-address=127.0.0.1:8080
             - --leader-elect
-            - --wireguard-container-image="{{ .Values.wireguard.image.repository }}:{{ .Values.wireguard.image.tag | default .Chart.AppVersion }}"
+            - --wireguard-container-image={{ .Values.wireguard.image.repository }}:{{ .Values.wireguard.image.tag | default .Chart.AppVersion }}
           securityContext:
             {{- toYaml .Values.manager.securityContext | nindent 12 }}
           image: "{{ .Values.manager.image.repository }}:{{ .Values.manager.image.tag | default .Chart.AppVersion }}"
