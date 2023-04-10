@@ -6,5 +6,5 @@ metadata:
   labels:
     {{- include "wireguard-operator.labels" $ | nindent 4 }}
 spec:
-  {{- toYaml .Values.wireguard.spec | nindent 2 }}
+  {{- toYaml .Values.wireguardVPN.spec | nindent 2 }}
 {{ end }}

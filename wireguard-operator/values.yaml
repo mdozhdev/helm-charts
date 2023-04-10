@@ -19,9 +19,9 @@ kubeRbacProxy:
 
 manager:
   image:
-    repository: ghcr.io/jodevsa/wireguard-operator/operator
+    repository: ghcr.io/mdozhdev/wireguard-operator/operator
     pullPolicy: IfNotPresent
-    tag: sha-7b4133ef765b314d67b62455be3eea076deafa3d
+    tag: sha-4925ebc14164aa435dad4c72ed63ece70f243c29
   securityContext:
     allowPrivilegeEscalation: false
   resources:
@@ -34,8 +34,8 @@ manager:
 
 wireguard:
   image:
-    repository: ghcr.io/jodevsa/wireguard-operator/wireguard
-    tag: sha-7b4133ef765b314d67b62455be3eea076deafa3d
+    repository: ghcr.io/mdozhdev/wireguard-operator/wireguard
+    tag: sha-4925ebc14164aa435dad4c72ed63ece70f243c29
 
 imagePullSecrets: []
 nameOverride: ""
@@ -402,6 +402,7 @@ roles:
 
 wireguardVPN:
   create: false
-  spec: {}
+  spec:
+    serviceAnnotations: {}
 
 wireguardPeers: []

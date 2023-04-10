@@ -41,6 +41,14 @@ spec:
                 serviceType:
                   description: Service Type string describes ingress methods for a service
                   type: string
+                serviceAnnotations:
+                  description: Service Annotations map configure a VPN service
+                  type: object
+                  additionalProperties:
+                    type: string
+                loadBalancerIP:
+                  description: Load Balancer's external static IP
+                  type: string
               type: object
             status:
               description: WireguardStatus defines the observed state of Wireguard
